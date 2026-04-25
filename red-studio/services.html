@@ -1,0 +1,166 @@
+<!-- 
+RED STUDIO - UPDATED LOGO & MAP VERSION
+Place primary-logo.png and secondary-logo.png inside assets/logos/
+Replace all [BLANK - ...] placeholders with real images
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | RED Studio</title>
+    <link rel="icon" type="image/png" href="assets/ACT.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .faq-item {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(227, 6, 19, 0.3);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: #fff;
+            font-family: 'Outfit';
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            color: var(--text-muted);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--accent-red);
+        }
+    </style>
+
+    <meta property="og:title" content="RED Studio | Cinematic Visuals">
+    <meta property="og:description" content="We Paint with Light. Premium photography and videography studio.">
+    <meta property="og:image" content="assets/Banner.png">
+    <meta property="og:url" content="https://redstudio.com">
+    <meta property="og:type" content="website">
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-box"><img src="assets/ACT.png" alt="RED Studio" loading="lazy"></a>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="studio.html">Studio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions"><a href="contact.html" class="btn btn-primary">Book</a></div>
+        </div>
+    </header>
+
+    <section class="hero"
+        style="min-height: 50vh; padding-top: 150px; background: radial-gradient(circle at top, #1a0000 0%, #050000 80%);">
+        <div class="container text-center fade-in">
+            <h1 class="hero-title"><span class="text-accent">Services</span> & Pricing</h1>
+            <p class="subtitle mt-4">Tailored visual solutions from concept to post-production.</p>
+        </div>
+    </section>
+
+    <!-- Services Cards -->
+    <section class="container fade-in">
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-camera-retro text-accent" style="font-size: 2.5rem; margin-bottom: 1.5rem;"></i>
+                <h3>Photography</h3>
+                <p>Fashion, Editorial, Product, and High-End Portraits.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-video text-accent" style="font-size: 2.5rem; margin-bottom: 1.5rem;"></i>
+                <h3>Videography</h3>
+                <p>Commercials, Music Videos, and Corporate Documentaries.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-mobile-alt text-accent" style="font-size: 2.5rem; margin-bottom: 1.5rem;"></i>
+                <h3>Reels & Shorts</h3>
+                <p>High-retention 9:16 vertical content optimized for social growth.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-code text-accent" style="font-size: 2.5rem; margin-bottom: 1.5rem;"></i>
+                <h3>Web Development</h3>
+                <p>Custom websites, proffesional websites, testing of websites and UI/UX design</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-magic text-accent" style="font-size: 2.5rem; margin-bottom: 1.5rem;"></i>
+                <h3>Signature Shots</h3>
+                <p>Stylized hero images and cinematic slow-motion captures.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-building text-accent" style="font-size: 2.5rem; margin-bottom: 1.5rem;"></i>
+                <h3>Corporate</h3>
+                <p>Professional headshots and brand visual identity assets.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-film text-accent" style="font-size: 2.5rem; margin-bottom: 1.5rem;"></i>
+                <h3>Post-Production</h3>
+                <p>Color grading, VFX, editing, and professional retouching.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer placeholder -->
+    <footer
+        style="margin-top: 3rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 0;">
+        <img src="assets/ACT.png" alt="RED Logomark" style="height:30px; margin-bottom:1rem;" loading="lazy">
+        <p class="text-muted">&copy; 2026 RED Studio</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // FAQ Setup
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+
+    <a href="contact.html" class="mobile-book-now">
+        <i class="fas fa-calendar-check"></i> Book Now
+    </a>
+
+</body>
+
+</html>

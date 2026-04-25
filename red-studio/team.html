@@ -1,0 +1,893 @@
+<!-- 
+RED STUDIO - TEAM PAGE
+Editorial Full-Page Redesign — No Modals
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team | RED Studio</title>
+    <meta name="description"
+        content="Meet the visionary artists behind RED Studio — the creative directors and photographers capturing light and emotion.">
+    <link rel="icon" type="image/png" href="assets/ACT.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ═══════════════════════════════════════════
+           TEAM PAGE — EDITORIAL DESIGN SYSTEM
+           ═══════════════════════════════════════════ */
+
+        /* Film Grain Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="n"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="4" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23n)"/%3E%3C/svg%3E');
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* Red Vignette */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 50%, rgba(227, 6, 19, 0.06) 100%);
+            pointer-events: none;
+            z-index: 9997;
+        }
+
+        /* ─── HERO OVERRIDES ─── */
+        .team-hero {
+            min-height: 55vh;
+            padding-top: 160px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .team-hero .hero-bg {
+            opacity: 0.12;
+            animation: kenBurnsTeam 15s infinite alternate linear;
+        }
+
+        @keyframes kenBurnsTeam {
+            0% {
+                transform: scale(1.04);
+            }
+
+            100% {
+                transform: scale(1.12);
+            }
+        }
+
+        .team-hero .hero-overlay {
+            background: linear-gradient(to bottom, rgba(8, 8, 8, 0.3), #080808),
+                radial-gradient(circle at center, rgba(227, 6, 19, 0.04) 0%, transparent 60%);
+        }
+
+        /* Hero Title Splits */
+        .hero-title-left {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: heroSlideLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .hero-title-right {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: heroSlideRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+        }
+
+        @keyframes heroSlideLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes heroSlideRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-subtitle-reveal {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeUpSubtitle 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+        }
+
+        @keyframes fadeUpSubtitle {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Horizontal Rule Draw */
+        .hero-rule {
+            width: 0;
+            height: 1px;
+            background: var(--accent-red);
+            margin: 1.5rem auto 0;
+            animation: drawRule 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.9s forwards;
+        }
+
+        @keyframes drawRule {
+            to {
+                width: 120px;
+            }
+        }
+
+        /* ─── EDITORIAL PANELS ─── */
+        #team-editorial-panels {
+            position: relative;
+            width: 100%;
+        }
+
+        .editorial-panel {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            padding: 8rem 0;
+            overflow: hidden;
+        }
+
+        .editorial-panel-inner {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            position: relative;
+        }
+
+        /* Sticky Section Label */
+        .panel-sticky-label {
+            position: absolute;
+            left: -2rem;
+            top: 120px;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            position: sticky;
+            top: 120px;
+            z-index: 5;
+        }
+
+        .editorial-panel.in-view .panel-sticky-label {
+            opacity: 1;
+        }
+
+        /* ─── LEFT COLUMN — Portrait ─── */
+        .portrait-col {
+            position: relative;
+        }
+
+        .portrait-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 8px;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(1.03);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .editorial-panel.in-view .portrait-wrapper {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .portrait-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            display: block;
+            will-change: transform;
+        }
+
+        .portrait-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(8, 8, 8, 0.95), transparent);
+            pointer-events: none;
+        }
+
+        /* Quote Block */
+        .portrait-quote {
+            margin-top: 2rem;
+            font-size: 1.6rem;
+            font-style: italic;
+            color: #fff;
+            border-left: 4px solid var(--accent-red);
+            padding-left: 1.5rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+        }
+
+        .editorial-panel.in-view .portrait-quote {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Instagram Pill */
+        .insta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.2rem;
+            padding: 0.5rem 1.2rem;
+            border: 1px solid var(--accent-red);
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .insta-pill:hover {
+            background: rgba(227, 6, 19, 0.15);
+            color: var(--accent-red);
+            box-shadow: 0 0 20px rgba(227, 6, 19, 0.2);
+        }
+
+        /* ─── RIGHT COLUMN — Content ─── */
+        .content-col {
+            padding-top: 2rem;
+        }
+
+        /* Name */
+        .member-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 6rem;
+            color: #fff;
+            line-height: 0.95;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .editorial-panel.in-view .member-name {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Role */
+        .member-role {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: var(--accent-red);
+            letter-spacing: 4px;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+        }
+
+        .editorial-panel.in-view .member-role {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Red Divider */
+        .content-divider {
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, var(--accent-red), rgba(227, 6, 19, 0.2));
+            margin-bottom: 2.5rem;
+            transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s;
+        }
+
+        .editorial-panel.in-view .content-divider {
+            width: 100%;
+        }
+
+        /* Bio Section */
+        .bio-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-red);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .bio-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #d4d0cb;
+        }
+
+        .bio-text .bio-line {
+            display: block;
+            clip-path: inset(0 0 100% 0);
+            transition: clip-path 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .editorial-panel.in-view .bio-text .bio-line {
+            clip-path: inset(0 0 0% 0);
+        }
+
+        /* Stats Row */
+        .stats-row {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-block {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .stat-block .section-label {
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.5s ease 0.5s, transform 0.5s ease 0.5s;
+        }
+
+        .editorial-panel.in-view .stat-value {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Specialties Tags */
+        .specialties-section {
+            margin-bottom: 3rem;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        .specialty-tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(227, 6, 19, 0.08);
+            border: 1px solid rgba(227, 6, 19, 0.3);
+            border-radius: 30px;
+            color: var(--accent-red);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: default;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.4s ease, transform 0.4s ease, background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .editorial-panel.in-view .specialty-tag {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .specialty-tag:hover {
+            background: var(--accent-red);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(227, 6, 19, 0.3);
+        }
+
+        /* Selected Works Strip */
+        .works-section {
+            margin-bottom: 2rem;
+        }
+
+        .works-strip {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
+        }
+
+        .works-strip::-webkit-scrollbar {
+            display: none;
+        }
+
+        .work-sample {
+            flex: 0 0 220px;
+            height: 160px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(227, 6, 19, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(30%);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .work-sample:hover {
+            filter: grayscale(0%);
+            box-shadow: 0 4px 30px rgba(227, 6, 19, 0.25);
+            border-color: rgba(227, 6, 19, 0.4);
+        }
+
+        .work-sample img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-sample-placeholder {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.75rem;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            padding: 1rem;
+        }
+
+        .work-sample-placeholder i {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ─── PANEL SEPARATOR ─── */
+        .panel-separator {
+            position: relative;
+            width: 100%;
+            padding: 2rem 0;
+            overflow: hidden;
+        }
+
+        .separator-line {
+            width: 0;
+            height: 1px;
+            background: var(--accent-red);
+            margin: 0 auto;
+            transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .panel-separator.in-view .separator-line {
+            width: 100%;
+        }
+
+        .separator-watermark {
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 8rem;
+            color: #fff;
+            opacity: 0.03;
+            line-height: 1;
+            margin-top: -1rem;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* ─── HIDE ORIGINAL GRID ─── */
+        .team-grid {
+            display: none !important;
+        }
+
+        /* ─── MOBILE RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .editorial-panel {
+                padding: 4rem 0;
+                min-height: auto;
+            }
+
+            .editorial-panel-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1.5rem;
+            }
+
+            .panel-sticky-label {
+                display: none;
+            }
+
+            .portrait-wrapper {
+                aspect-ratio: 9 / 16;
+                height: auto;
+                min-height: auto;
+            }
+
+            .member-name {
+                font-size: 4rem;
+            }
+
+            .member-role {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+
+            .bio-text {
+                font-size: 1rem;
+            }
+
+            .portrait-quote {
+                font-size: 1.3rem;
+            }
+
+            .stats-row {
+                gap: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.2rem;
+            }
+
+            .separator-watermark {
+                font-size: 4rem;
+            }
+
+            .works-strip {
+                gap: 0.8rem;
+            }
+
+            .work-sample {
+                flex: 0 0 180px;
+                height: 130px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .member-name {
+                font-size: 3rem;
+            }
+
+            .editorial-panel-inner {
+                padding: 0 1rem;
+            }
+        }
+
+        /* ─── PREFERS REDUCED MOTION ─── */
+        @media (prefers-reduced-motion: reduce) {
+
+            .hero-title-left,
+            .hero-title-right,
+            .hero-subtitle-reveal,
+            .portrait-wrapper,
+            .portrait-quote,
+            .member-name,
+            .member-role,
+            .stat-value,
+            .specialty-tag,
+            .bio-text .bio-line {
+                opacity: 1 !important;
+                transform: none !important;
+                clip-path: none !important;
+                animation: none !important;
+                transition: none !important;
+            }
+
+            .hero-rule {
+                width: 120px !important;
+                animation: none !important;
+            }
+
+            .content-divider {
+                width: 100% !important;
+                transition: none !important;
+            }
+
+            .separator-line {
+                width: 100% !important;
+                transition: none !important;
+            }
+
+            .team-hero .hero-bg {
+                animation: none !important;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-box"><img src="assets/ACT.png" alt="RED Studio"></a>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="team.html" class="active">Our Team</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="studio.html">Studio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a href="contact.html" class="btn btn-primary">Book a Shoot</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="team-hero hero" style="min-height: 55vh; padding-top: 160px;">
+        <div class="hero-bg" style="background-image: url('assets/redpatterns.png');"></div>
+        <div class="hero-overlay"></div>
+        <div class="container text-center">
+            <h1 class="hero-title">
+                <span class="hero-title-left">Meet The </span><span class="hero-title-right text-accent">Team</span>
+            </h1>
+            <p class="subtitle hero-subtitle-reveal" style="margin-top: 1rem;">The visionary artists and designers
+                behind the lens and code,
+                crafting cinematic imagery and immersive digital experiences.</p>
+            <div class="hero-rule"></div>
+        </div>
+    </section>
+
+    <!-- Team Data Source (hidden, read by JS) -->
+    <section class="container" style="position: relative; padding-top: 2rem;">
+        <div class="team-grid">
+            <div class="profile-card team-member-card" data-name="Chris Zeyon Pinto"
+                data-role="Creative Director & Founder" data-img="assets/WebChris.png"
+                data-bio="The visionary force behind RED Studio. With a passion for dramatic lighting and emotional storytelling, Chris leads the creative direction and ensures every frame tells a powerful story. He has directed prominent campaigns and his hallmark is an unmistakable cinematic contrast."
+                data-experience="2+ Years" data-specialties="Cinematic Direction, Visual Storytelling, Brand Campaigns"
+                data-equipment="Unclassified"
+                data-quote="every story deserves to be told through light, motion, and emotion."
+                data-instagram="@z_____ch7" data-instagram-url="https://instagram.com/z_____ch7">
+            </div>
+
+            <div class="profile-card team-member-card" data-name="Ciyana Lora Pinto" data-role="Technical Director"
+                data-img="assets/Ciyana.png"
+                data-bio="She leads RED Studio’s digital arm, transforming bold creative visions into high-performance, cinematic websites. With a sharp eye for UI/UX and a passion for clean code, she ensures every RED website feels as premium and immersive as our photography and videography work. She maintains complete creative control and secrecy over client projects."
+                data-experience="Unclassified" data-specialties="Fashion & Editorial, Coding, Natural Light Portraits"
+                data-equipment="Unclassified" data-quote="Every frame is a painting waiting to be revealed."
+                data-instagram="@Unclassified" data-instagram-url="https://instagram.com/rdx._.red"></div>
+        </div>
+        </div>
+        </div>
+
+        <!-- Editorial Panels Container (JS-populated) -->
+        <div id="team-editorial-panels"></div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid fade-in">
+            <div class="footer-logo">
+                <img src="assets/ACT.png" alt="RED Logo">
+                <p class="text-muted" style="margin-top: 1rem;">Capturing Moments in Red</p>
+            </div>
+            <div class="footer-bottom" style="grid-column: 1 / -1; border: none;">
+                <p>&copy; 2026 RED Studio | Privacy | Terms</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <script>
+        /* ═══════════════════════════════════════════════════
+           TEAM EDITORIAL ENGINE — Inline Panel Renderer
+           ═══════════════════════════════════════════════════ */
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.team-member-card');
+            const container = document.getElementById('team-editorial-panels');
+            if (!container || cards.length === 0) return;
+
+            let panelHTML = '';
+
+            cards.forEach((card, index) => {
+                const name = card.getAttribute('data-name') || '';
+                const role = card.getAttribute('data-role') || '';
+                const img = card.getAttribute('data-img') || '';
+                const bio = card.getAttribute('data-bio') || '';
+                const experience = card.getAttribute('data-experience') || '';
+                const specialties = card.getAttribute('data-specialties') || '';
+                const equipment = card.getAttribute('data-equipment') || '';
+                const quote = card.getAttribute('data-quote') || '';
+                const instagram = card.getAttribute('data-instagram') || '';
+                const instagramUrl = card.getAttribute('data-instagram-url') || '#';
+
+                const num = String(index + 1).padStart(2, '0');
+
+                let displayName = name;
+                let imgSrc = img;
+                let imgComment = '';
+                let altText = name;
+
+                if (name === 'Ciyana Lora Pinto') {
+                    displayName = `<span style='opacity:0.4; font-size:4.5rem;'>?????????</span>`;
+                    imgComment = '';
+                    altText = 'Sneak Peek';
+                }
+
+                // Build specialty tags
+                const tagsHTML = specialties.split(',').map((tag, i) => {
+                    const trimmed = tag.trim();
+                    if (!trimmed) return '';
+                    return `<span class="specialty-tag" style="transition-delay: ${0.4 + (i * 0.08)}s">${trimmed}</span>`;
+                }).join('');
+
+                // Build bio lines for clip-path animation
+                const bioSentences = bio.match(/[^.!?]+[.!?]+/g) || [bio];
+                const bioLinesHTML = bioSentences.map((line, i) => {
+                    return `<span class="bio-line" style="transition-delay: ${0.35 + (i * 0.08)}s">${line.trim()} </span>`;
+                }).join('');
+
+                // Add separator before panels (except first)
+                if (index > 0) {
+                    panelHTML += `
+                        <div class="panel-separator" data-animate="separator">
+                            <div class="separator-line"></div>
+                            <div class="separator-watermark">RED STUDIO</div>
+                        </div>
+                    `;
+                }
+
+                panelHTML += `
+                    <div class="editorial-panel" data-animate="panel" id="panel-${num}">
+                        <div class="panel-sticky-label">${num} — ${role.toUpperCase()}</div>
+                        <div class="editorial-panel-inner">
+                            <!-- LEFT: Portrait -->
+                            <div class="portrait-col">
+                                <div class="portrait-wrapper" data-parallax>${imgComment}
+                                    <img src="${imgSrc}" alt="${altText}" loading="lazy">
+                                </div>
+                                <blockquote class="portrait-quote">"${quote}"</blockquote>
+                                <a href="${instagramUrl}" target="_blank" rel="noopener noreferrer" class="insta-pill">
+                                    <i class="fab fa-instagram"></i> ${instagram}
+                                </a>
+                            </div>
+
+                            <!-- RIGHT: Content -->
+                            <div class="content-col">
+                                <h2 class="member-name">${displayName}</h2>
+                                <p class="member-role">${role}</p>
+                                <div class="content-divider"></div>
+
+                                <div class="bio-section">
+                                    <div class="section-label">Biography</div>
+                                    <div class="bio-text">${bioLinesHTML}</div>
+                                </div>
+
+                                <div class="stats-row">
+                                    <div class="stat-block">
+                                        <div class="section-label">Experience</div>
+                                        <div class="stat-value">${experience}</div>
+                                    </div>
+                                    <div class="stat-block">
+                                        <div class="section-label">${role.includes('Development') || role.includes('Design') ? 'Primary Tools' : 'Primary Equipment'}</div>
+                                        <div class="stat-value">${equipment}</div>
+                                    </div>
+                                </div>
+
+                                <div class="specialties-section">
+                                    <div class="section-label">Specialties</div>
+                                    <div class="tags-container">${tagsHTML}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = panelHTML;
+
+            /* ─── SCROLL ANIMATION SYSTEM ─── */
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (!reducedMotion) {
+                // IntersectionObserver for panels
+                const panelObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                            panelObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.15 });
+
+                document.querySelectorAll('.editorial-panel').forEach(panel => {
+                    panelObserver.observe(panel);
+                });
+
+                // IntersectionObserver for separators
+                const sepObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                            sepObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                document.querySelectorAll('.panel-separator').forEach(sep => {
+                    sepObserver.observe(sep);
+                });
+
+                // Parallax effect on portraits
+                const parallaxImages = document.querySelectorAll('[data-parallax] img');
+
+                const handleParallax = () => {
+                    parallaxImages.forEach(img => {
+                        const wrapper = img.closest('.portrait-wrapper');
+                        const rect = wrapper.getBoundingClientRect();
+                        const viewH = window.innerHeight;
+
+                        if (rect.top < viewH && rect.bottom > 0) {
+                            const scrollPercent = (viewH - rect.top) / (viewH + rect.height);
+                            const translateY = (scrollPercent - 0.5) * 60 * 0.3;
+                            img.style.transform = `translateY(${translateY}px)`;
+                        }
+                    });
+                };
+
+                let parallaxTick = false;
+                window.addEventListener('scroll', () => {
+                    if (!parallaxTick) {
+                        requestAnimationFrame(() => {
+                            handleParallax();
+                            parallaxTick = false;
+                        });
+                        parallaxTick = true;
+                    }
+                }, { passive: true });
+
+            } else {
+                // Reduced motion — show everything immediately
+                document.querySelectorAll('.editorial-panel').forEach(p => p.classList.add('in-view'));
+                document.querySelectorAll('.panel-separator').forEach(s => s.classList.add('in-view'));
+            }
+        });
+    </script>
+</body>
+
+</html>

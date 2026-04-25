@@ -1,0 +1,170 @@
+<!-- 
+RED STUDIO - UPDATED LOGO & MAP VERSION
+Place primary-logo.png and secondary-logo.png inside assets/logos/
+Replace all [BLANK - ...] placeholders with real images
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | RED Studio</title>
+    <link rel="icon" type="image/png" href="assets/ACT.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-box"><img src="assets/ACT.png" alt="RED Studio"></a>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                    <li><a href="studio.html">Studio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" style="min-height: 40vh; padding-top: 150px; padding-bottom: 20px;">
+        <div class="container text-center fade-in">
+            <h1 class="hero-title">Selected <span class="text-accent">Works</span></h1>
+        </div>
+    </section>
+
+    <!-- Portfolio Filters -->
+    <div class="container text-center fade-in" style="margin-bottom: 2rem;">
+        <div class="portfolio-filters" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+            <button class="btn btn-outline filter-btn active" data-filter="all">All</button>
+            <button class="btn btn-outline filter-btn" data-filter="videography">Videography</button>
+            <button class="btn btn-outline filter-btn" data-filter="photography">Photography</button>
+            <button class="btn btn-outline filter-btn" id="btn-code-red" style="border-color: var(--accent-red); color: var(--accent-red);">CODE RED</button>
+        </div>
+    </div>
+
+    <!-- Masonry Grid -->
+    <section class="container fade-in" style="padding-top: 0;">
+        <div class="masonry-grid" id="portfolio-masonry-grid" style="display: block; column-width: 300px; column-gap: 1.5rem;">
+
+            <!-- Video 1 -->
+            <div class="masonry-item" style="aspect-ratio: 16/9; width: 100%; margin-bottom: 1.5rem; break-inside: avoid; display: inline-block;" data-category="videography" data-type="video"
+                data-src="assets/bishop.mp4">
+                <img src="assets/Wattermark.png" alt="Bishop" loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; background: #111;">
+                <div class="masonry-overlay">
+                    <h3 style="color: #fff; font-size: 1.2rem;">Bishop</h3>
+                    <p style="color: #eee; font-size: 0.9rem;">Videography</p>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="masonry-item" style="aspect-ratio: 16/9; width: 100%; margin-bottom: 1.5rem; break-inside: avoid; display: inline-block;" data-category="videography" data-type="video"
+                data-src="assets/Ester%20Vigil.mp4">
+                <img src="assets/Wattermark.png" alt="Ester Vigil" loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; background: #111;">
+                <div class="masonry-overlay">
+                    <h3 style="color: #fff; font-size: 1.2rem;">Ester Vigil</h3>
+                    <p style="color: #eee; font-size: 0.9rem;">Videography</p>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="masonry-item" style="aspect-ratio: 16/9; width: 100%; margin-bottom: 1.5rem; break-inside: avoid; display: inline-block;" data-category="videography" data-type="video"
+                data-src="assets/Shiradi.mp4">
+                <img src="assets/Wattermark.png" alt="Shiradi" loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px; background: #111;">
+                <div class="masonry-overlay">
+                    <h3 style="color: #fff; font-size: 1.2rem;">Shiradi</h3>
+                    <p style="color: #eee; font-size: 0.9rem;">Videography</p>
+                </div>
+            </div>
+
+            <!-- Image 1 -->
+            <div class="masonry-item" style="aspect-ratio: 9/16; width: 100%; margin-bottom: 1.5rem; break-inside: avoid; display: inline-block;" data-category="photography" data-type="image"
+                data-src="assets/Back.png">
+                <img src="assets/Back.png" alt="Back" loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <div class="masonry-overlay">
+                    <h3 style="color: #fff; font-size: 1.2rem;">Back</h3>
+                    <p style="color: #eee; font-size: 0.9rem;">Photography</p>
+                </div>
+            </div>
+
+            <!-- Image 2 -->
+            <div class="masonry-item" style="aspect-ratio: 9/16; width: 100%; margin-bottom: 1.5rem; break-inside: avoid; display: inline-block;" data-category="photography" data-type="image"
+                data-src="assets/College.heic">
+                <img src="assets/College.heic" alt="College" loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <div class="masonry-overlay">
+                    <h3 style="color: #fff; font-size: 1.2rem;">College</h3>
+                    <p style="color: #eee; font-size: 0.9rem;">Photography</p>
+                </div>
+            </div>
+
+            <!-- Image 3 -->
+            <div class="masonry-item" style="aspect-ratio: 9/16; width: 100%; margin-bottom: 1.5rem; break-inside: avoid; display: inline-block;" data-category="photography" data-type="image"
+                data-src="assets/Mangalore.heic">
+                <img src="assets/Mangalore.heic" alt="Mangalore" loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <div class="masonry-overlay">
+                    <h3 style="color: #fff; font-size: 1.2rem;">Mangalore</h3>
+                    <p style="color: #eee; font-size: 0.9rem;">Photography</p>
+                </div>
+            </div>
+
+            <!-- Image 4 -->
+            <div class="masonry-item" style="aspect-ratio: 16/9; width: 100%; margin-bottom: 1.5rem; break-inside: avoid; display: inline-block;" data-category="photography" data-type="image"
+                data-src="assets/Midnight.jpg">
+                <img src="assets/Midnight.jpg" alt="Midnight" loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <div class="masonry-overlay">
+                    <h3 style="color: #fff; font-size: 1.2rem;">Midnight</h3>
+                    <p style="color: #eee; font-size: 0.9rem;">Photography</p>
+                </div>
+            </div>
+
+            <!-- Image 5 -->
+            <div class="masonry-item" style="aspect-ratio: 9/16; width: 100%; margin-bottom: 1.5rem; break-inside: avoid; display: inline-block;" data-category="photography" data-type="image"
+                data-src="assets/Tulasi.jpg">
+                <img src="assets/Tulasi.jpg" alt="Tulasi" loading="lazy"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                <div class="masonry-overlay">
+                    <h3 style="color: #fff; font-size: 1.2rem;">Tulasi</h3>
+                    <p style="color: #eee; font-size: 0.9rem;">Photography</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modal Lightbox -->
+    <div class="modal" id="portfolio-modal">
+        <button class="close-modal" aria-label="Close modal">&times;</button>
+        <div class="modal-content text-center">
+            <div id="modal-media-container"></div>
+            <div class="modal-info">
+                <h2 id="modal-title"></h2>
+                <p id="modal-category" class="text-accent"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer placeholder -->
+    <footer
+        style="margin-top: 3rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem 0;">
+        <img src="assets/ACT.png" alt="RED Logomark" style="height:30px; margin-bottom:1rem;">
+        <p class="text-muted">&copy; 2026 RED Studio</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
