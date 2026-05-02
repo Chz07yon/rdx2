@@ -268,9 +268,31 @@ Editorial Full-Page Redesign — No Modals
             padding-top: 2rem;
         }
 
+        /* Ghost Name Effect */
+        .ghost-name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'VFCFantomen', sans-serif;
+            font-size: clamp(8rem, 18vw, 25rem);
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 0;
+            text-transform: uppercase;
+            user-select: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .editorial-panel.in-view .ghost-name {
+            opacity: 1;
+        }
+
         /* Name */
         .member-name {
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'VFCFantomen', sans-serif;
             font-size: 6rem;
             color: #fff;
             line-height: 0.95;
@@ -502,7 +524,7 @@ Editorial Full-Page Redesign — No Modals
 
         .separator-watermark {
             text-align: center;
-            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'VFCFantomen', sans-serif;
             font-size: 8rem;
             color: #fff;
             opacity: 0.03;
@@ -647,6 +669,7 @@ Editorial Full-Page Redesign — No Modals
                     <li><a href="services.html">Services</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
                     <li><a href="studio.html">Studio</a></li>
+                    <li><a href="code-red.html">Code RED</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -743,6 +766,8 @@ Editorial Full-Page Redesign — No Modals
                 let imgComment = '';
                 let altText = name;
 
+                let ghostText = name.split(' ')[0];
+
                 if (name === 'Ciyana Lora Pinto') {
                     displayName = `<span style='opacity:0.4; font-size:4.5rem;'>?????????</span>`;
                     imgComment = '';
@@ -774,6 +799,7 @@ Editorial Full-Page Redesign — No Modals
 
                 panelHTML += `
                     <div class="editorial-panel" data-animate="panel" id="panel-${num}">
+                        <div class="ghost-name">${ghostText}</div>
                         <div class="panel-sticky-label">${num} — ${role.toUpperCase()}</div>
                         <div class="editorial-panel-inner">
                             <!-- LEFT: Portrait -->
