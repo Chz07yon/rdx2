@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // 6. Contact Form Simulated Submit & Save
+    // 6. Contact Form Submit & Redirect to Email
     const contactForm = document.getElementById('contact-form');
     if(contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -431,7 +431,26 @@ document.addEventListener('DOMContentLoaded', async () => {
             localStorage.setItem('red_contact_requests', JSON.stringify(existingRequests));
 
             console.log('Form Submitted and Saved:', data);
-            alert('Thank you! Your message has been saved and sent to RED Studio.');
+
+            // Construct email content
+            const subject = encodeURIComponent(`Booking Request: ${data.service} - ${data.name}`);
+            const body = encodeURIComponent(
+                `Hello RED Studio,\n\n` +
+                `I would like to request a booking.\n\n` +
+                `Details:\n` +
+                `- Name: ${data.name}\n` +
+                `- Email: ${data.email}\n` +
+                `- Phone: ${data.phone}\n` +
+                `- Service: ${data.service}\n` +
+                `- Preferred Date: ${data.date || 'Not specified'}\n\n` +
+                `Message:\n${data.message || 'None'}\n\n` +
+                `Best regards,\n${data.name}`
+            );
+            
+            // Redirect explicitly to Gmail Web Compose
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=ddxredx0703@gmail.com&su=${subject}&body=${body}`;
+            window.open(gmailUrl, '_blank');
+            
             contactForm.reset();
         });
     }
