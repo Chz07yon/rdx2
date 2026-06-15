@@ -203,6 +203,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     triggerCodeRedTransition();
                     return;
                 }
+                if (btn.id === 'btn-shape-red') {
+                    triggerShapeRedTransition();
+                    return;
+                }
                 
                 // Remove active class
                 filterBtns.forEach(b => b.classList.remove('active'));
@@ -245,6 +249,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Redirect after delay
         setTimeout(() => {
             window.location.href = 'code-red.html';
+        }, 2400); // 2.4s delay for full dramatic effect
+    }
+
+    function triggerShapeRedTransition() {
+        const overlay = document.createElement('div');
+        overlay.id = 'code-red-overlay';
+        overlay.innerHTML = `
+            <div class="code-red-content">
+                <div class="scan-line"></div>
+                <h1 class="code-red-text">SHAPE <span class="text-accent">RED</span></h1>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+
+        // Force reflow
+        void overlay.offsetWidth;
+        
+        // Add active class to start animation
+        overlay.classList.add('active');
+        
+        // Redirect after delay
+        setTimeout(() => {
+            window.location.href = 'shape-red.html';
         }, 2400); // 2.4s delay for full dramatic effect
     }
 

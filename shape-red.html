@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHAPE RED | Digital Media Division</title>
+    <link rel="icon" type="image/png" href="assets/ACT.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: #050000;
+        }
+
+        .hero-shape-red {
+            padding-top: 180px;
+            padding-bottom: 60px;
+        }
+
+        .creative-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border: 1px solid var(--accent-red);
+            color: var(--accent-red);
+            font-family: 'Bebas Neue';
+            letter-spacing: 2px;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+        }
+    </style>
+
+    <meta property="og:title" content="SHAPE RED | Digital Media">
+    <meta property="og:description" content="The creative digital wing of RED Studio. Posters, title cards, logos.">
+    <meta property="og:image" content="assets/Banner.png">
+    <meta property="og:url" content="https://redstudio.com">
+    <meta property="og:type" content="website">
+</head>
+
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-box">
+                <img src="assets/ACT.png" alt="RED Studio Logo" loading="lazy">
+            </a>
+            <button class="hamburger" aria-label="Menu">&#9776;</button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="team.html">Our Team</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="studio.html">Studio</a></li>
+                    <li><a href="code-red.html">Code RED</a></li>
+                    <li><a href="shape-red.html" class="active">Shape RED</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a href="contact.html" class="btn btn-primary">Book a Shoot</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero hero-shape-red" style="position: relative; overflow: hidden;">
+        <!-- Background Image with low opacity -->
+        <div style="position:absolute; inset:0; background: url('assets/RED.png') center/cover no-repeat; opacity: 0.15; z-index:-2; pointer-events:none;"></div>
+        
+        <!-- Animated Scanline effect for hero -->
+        <div
+            style="position:absolute; inset:0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(227,6,19,0.03) 2px, rgba(227,6,19,0.03) 4px); pointer-events:none; z-index:-1;">
+        </div>
+
+        <div class="container text-center fade-in">
+            <span class="creative-badge">DIGITAL MEDIA WING</span>
+            <h1 class="hero-title pt-4" style="color: #fff; letter-spacing: -0.05em;">SHAPE <span
+                    class="text-accent">RED</span></h1>
+            <p class="subtitle mt-4 mx-auto" style="color: #ddd;">The creative digital wing of RED Studio. We forge impactful digital media including posters, title cards, and brand logos.</p>
+        </div>
+    </section>
+
+    <!-- Digital Media Grid -->
+    <section class="container fade-in" style="padding-top: 2rem;">
+        <div class="websites-grid">
+            <!-- Project 1 -->
+            <div class="website-card">
+                <a href="assets/home-banner.png" target="_blank" class="website-thumb" style="display: block; cursor: pointer;">
+                    <img src="assets/home-banner.png" alt="Cinematic Posters" loading="lazy">
+                </a>
+                <div class="website-info">
+                    <h3>Cinematic Posters</h3>
+                    <p>High-impact, visually stunning promotional posters designed to capture the essence of any film or event.</p>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="website-card">
+                <a href="assets/Extended Background.png" target="_blank" class="website-thumb" style="display: block; cursor: pointer;">
+                    <img src="assets/Extended Background.png" alt="Title Cards" loading="lazy">
+                </a>
+                <div class="website-info">
+                    <h3>Title Cards</h3>
+                    <p>Bespoke typography and animated title cards that set the perfect tone for your cinematic narrative.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="website-card">
+                <a href="assets/LOgo.png" target="_blank" class="website-thumb" style="display: block; cursor: pointer;">
+                    <img src="assets/LOgo.png" alt="Brand Logos" loading="lazy">
+                </a>
+                <div class="website-info">
+                    <h3>Brand Logos</h3>
+                    <p>Minimalist yet bold logo designs tailored for modern studios, agencies, and high-end brands.</p>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="website-card">
+                <a href="assets/RED.png" target="_blank" class="website-thumb" style="display: block; cursor: pointer;">
+                    <img src="assets/RED.png" alt="Digital Media" loading="lazy">
+                </a>
+                <div class="website-info">
+                    <h3>Digital Art & Media</h3>
+                    <p>Immersive digital artworks, social media kits, and complete visual identity packages.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call To Action -->
+    <section class="hero"
+        style="padding: 100px 20px; background: radial-gradient(circle, #200000 0%, #0A0000 100%); margin-top: 4rem;">
+        <div class="container text-center fade-in">
+            <h2 class="section-title">Shape Your <span class="text-accent">Vision?</span></h2>
+            <p class="subtitle">Join the SHAPE RED initiative and let us craft your ultimate digital identity.</p>
+            <a href="contact.html" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Initiate
+                Protocol</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center fade-in" style="margin-top: 2rem;">
+            <img src="assets/ACT.png" alt="RED Logomark" style="height:40px; margin-bottom:1.5rem;" loading="lazy">
+            <p class="text-muted" style="max-width: 600px; margin: 0 auto 2rem;">SHAPE RED is a specialized wing of RED
+                Studio dedicated to premium digital media design.</p>
+            <p class="text-muted"
+                style="font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem;">&copy; 2026
+                RED Studio | SHAPE RED</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+    <a href="contact.html" class="mobile-book-now">
+        <i class="fas fa-calendar-check"></i> Book Now
+    </a>
+
+</body>
+
+</html>
