@@ -1,10 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
 @font-face {
-  font-family: 'VFCFantomen';
-  src: url('../Fonts/vintage-fonts/VFCFantomen.ttf') format('truetype');
+  font-family: 'Samarkan';
+  src: url('../Fonts/samarkan/SAMAN___.TTF') format('truetype');
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../Fonts/JetBrains_Mono/JetBrainsMono-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../Fonts/JetBrains_Mono/JetBrainsMono-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
 }
 
 :root {
@@ -30,7 +44,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'JetBrains Mono', sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-main);
   line-height: 1.6;
@@ -51,7 +65,7 @@ body::before {
   background-repeat: no-repeat;
   background-attachment: fixed;
   opacity: 0.08;
-  pointer-events: none;
+  poJetBrains Mono-events: none;
   z-index: -1;
 }
 
@@ -61,7 +75,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'VFCFantomen', sans-serif;
+  font-family: 'Samarkan', sans-serif;
   font-weight: normal;
   letter-spacing: 0.05em;
   line-height: 1.2;
@@ -116,13 +130,13 @@ section {
 .btn {
   display: inline-block;
   padding: 1rem 2.5rem;
-  font-family: 'VFCFantomen', sans-serif;
+  font-family: 'Samarkan', sans-serif;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 1.2rem;
   letter-spacing: 0.1em;
   transition: var(--transition-smooth);
-  cursor: pointer;
+  cursor: poJetBrains Mono;
   border: none;
 }
 
@@ -237,7 +251,7 @@ header.scrolled .logo-box img {
 .nav-links li a {
   color: var(--text-main);
   text-decoration: none;
-  font-family: 'VFCFantomen', sans-serif;
+  font-family: 'Samarkan', sans-serif;
   text-transform: uppercase;
   font-size: 0.85rem;
   letter-spacing: 0.1em;
@@ -290,7 +304,7 @@ header.scrolled .logo-box img {
   border: none;
   color: white;
   font-size: 1.5rem;
-  cursor: pointer;
+  cursor: poJetBrains Mono;
 }
 
 /* Mobile Menu */
@@ -392,7 +406,7 @@ header.scrolled .logo-box img {
   transform: translate(-50%, -50%);
   z-index: -1;
   animation: bloom 10s infinite alternate;
-  pointer-events: none;
+  poJetBrains Mono-events: none;
 }
 
 .hero-logo-large {
@@ -511,10 +525,10 @@ header.scrolled .logo-box img {
   background: none;
   border: none;
   color: var(--text-muted);
-  font-family: 'VFCFantomen';
+  font-family: 'Samarkan';
   text-transform: uppercase;
   letter-spacing: 1px;
-  cursor: pointer;
+  cursor: poJetBrains Mono;
   padding: 0.5rem 1rem;
   transition: 0.3s;
 }
@@ -524,7 +538,7 @@ header.scrolled .logo-box img {
   color: var(--accent-red);
 }
 
-/* Interactive Map Container */
+/* JetBrains Monoactive Map Container */
 .map-container {
   width: 100%;
   height: 500px;
@@ -537,7 +551,7 @@ header.scrolled .logo-box img {
 /* Leaflet Dark Theme Overrides */
 .leaflet-container {
   background: #0A0000;
-  font-family: 'Inter';
+  font-family: 'JetBrains Mono';
 }
 
 .leaflet-popup-content-wrapper {
@@ -563,7 +577,7 @@ header.scrolled .logo-box img {
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: white;
   border-radius: 6px;
-  font-family: 'Inter';
+  font-family: 'JetBrains Mono';
   transition: var(--transition-smooth);
 }
 
@@ -729,7 +743,7 @@ footer {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-family: 'VFCFantomen', sans-serif;
+  font-family: 'Samarkan', sans-serif;
 }
 
 .close-modal {
@@ -738,7 +752,7 @@ footer {
   right: 40px;
   color: #fff;
   font-size: 2.5rem;
-  cursor: pointer;
+  cursor: poJetBrains Mono;
   border: none;
   background: none;
   transition: var(--transition-smooth);
@@ -832,7 +846,7 @@ footer {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  cursor: pointer;
+  cursor: poJetBrains Mono;
   z-index: 1;
 }
 
@@ -922,7 +936,7 @@ footer {
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 1rem;
-  font-family: 'VFCFantomen', sans-serif;
+  font-family: 'Samarkan', sans-serif;
   font-weight: 600;
 }
 
@@ -939,7 +953,7 @@ footer {
 }
 
 .profile-social {
-  font-family: 'VFCFantomen', sans-serif;
+  font-family: 'Samarkan', sans-serif;
   color: #fff;
   font-size: 0.9rem;
   margin-bottom: 1.5rem;
@@ -968,7 +982,7 @@ footer {
   color: #fff;
   font-size: 0.85rem;
   font-weight: 600;
-  font-family: 'VFCFantomen', sans-serif;
+  font-family: 'Samarkan', sans-serif;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding: 8px 16px;
@@ -1078,7 +1092,7 @@ footer {
   font-size: 1.2rem;
   letter-spacing: 3px;
   margin-bottom: 2rem;
-  font-family: 'VFCFantomen', sans-serif;
+  font-family: 'Samarkan', sans-serif;
   text-transform: uppercase;
 }
 
@@ -1210,7 +1224,7 @@ footer {
   inset: 0;
   background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
   opacity: 0.04;
-  pointer-events: none;
+  poJetBrains Mono-events: none;
   z-index: -1;
 }
 
@@ -1223,7 +1237,7 @@ footer {
   box-shadow: 0 0 10px rgba(227,6,19,0.8);
   opacity: 0;
   z-index: 10;
-  pointer-events: none;
+  poJetBrains Mono-events: none;
 }
 .scanline.run {
   animation: scanDown 3s ease-in-out forwards;
@@ -1300,7 +1314,7 @@ footer {
   position: absolute;
   top: 10px; right: 15px;
   font-size: 6rem;
-  font-family: 'VFCFantomen';
+  font-family: 'Samarkan';
   color: var(--accent-red);
   opacity: 0.07;
   z-index: 0;
@@ -1349,7 +1363,7 @@ footer {
   background: conic-gradient(from 0deg, transparent 0deg, rgba(255,255,255,0.1) 180deg, transparent 360deg);
   opacity: 0.03;
   animation: rotateConic 15s linear infinite;
-  pointer-events: none;
+  poJetBrains Mono-events: none;
 }
 @keyframes rotateConic {
   from { transform: rotate(0deg); }
@@ -1458,7 +1472,7 @@ footer { position: relative; }
 }
 
 .code-red-text {
-  font-family: 'VFCFantomen', sans-serif;
+  font-family: 'Samarkan', sans-serif;
   font-size: clamp(4rem, 12vw, 10rem);
   color: #fff;
   letter-spacing: -0.05em;
