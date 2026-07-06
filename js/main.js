@@ -128,32 +128,90 @@ document.addEventListener('DOMContentLoaded', async () => {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     
+    // Set aria-current for accessibility
+    document.querySelectorAll('.nav-links a.active').forEach(link => {
+        link.setAttribute('aria-current', 'page');
+    });
+
     if(hamburger) {
         hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.innerHTML = navLinks.classList.contains('active') ? '&times;' : '&#9776;';
+            const isActive = navLinks.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+            hamburger.innerHTML = isActive ? '&times;' : '&#9776;';
         });
     }
+
+    // Mobile Dropdown Toggle
+    document.querySelectorAll('.dropdown-toggle-mobile').forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            toggle.closest('.nav-dropdown').classList.toggle('active');
+        });
+    });
 
     // Close menu on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             if(navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
-                if(hamburger) hamburger.innerHTML = '&#9776;';
+                if(hamburger) {
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.innerHTML = '&#9776;';
+                }
             }
         });
     });
 
-    // 2. Sticky Header Scroll Effect
+    // 2. Unified Scroll Header Behavior
     const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+    if (header) {
+        let lastScrollY = window.scrollY;
+        let isTicking = false;
+
+        window.addEventListener('scroll', () => {
+            if (!isTicking) {
+                window.requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
+                    
+                    // State Logic: isScrolled
+                    const isScrolled = currentScrollY > 100;
+                    
+                    // State Logic: isVisible
+                    let isVisible = !header.classList.contains('hidden');
+                    
+                    if (currentScrollY <= 120) {
+                        isVisible = true;
+                    } else if (currentScrollY > lastScrollY && currentScrollY - lastScrollY > 10) {
+                        // Scrolling down past 120px
+                        isVisible = false;
+                    } else if (currentScrollY < lastScrollY && lastScrollY - currentScrollY > 10) {
+                        // Scrolling up
+                        isVisible = true;
+                    }
+
+                    // Apply classes
+                    if (isScrolled) {
+                        header.classList.add('scrolled');
+                    } else {
+                        header.classList.remove('scrolled');
+                    }
+                    
+                    if (isVisible) {
+                        header.classList.remove('hidden');
+                    } else {
+                        header.classList.add('hidden');
+                    }
+                    
+                    if (Math.abs(currentScrollY - lastScrollY) > 10 || currentScrollY <= 120) {
+                        lastScrollY = currentScrollY;
+                    }
+                    
+                    isTicking = false;
+                });
+                isTicking = true;
+            }
+        });
+    }
 
     // 3. Precision Scroll Reveal Engine
     const observerOptions = {
@@ -170,7 +228,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }, observerOptions);
 
-    const elementsToReveal = new Set(document.querySelectorAll('.fade-in, [data-reveal]'));
+    const elementsToReveal = new Set(document.querySelectorAll('.fade-in, .fade-up-heavy, .fade-simple, .card-grid > *, [data-reveal]'));
 
     // Stagger .card-grid children and include them in the observer
     document.querySelectorAll('.card-grid').forEach(grid => {
@@ -911,4 +969,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         animateParticles();
     }
+
+    /* --- ANIMATION PERFORMANCE OBSERVER --- */
+    if (!reducedMotion) {
+        const animObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('animation-paused');
+                } else {
+                    entry.target.classList.add('animation-paused');
+                }
+            });
+        }, { threshold: 0, rootMargin: '50px' });
+
+        const animatedElements = document.querySelectorAll('.red-flare, .loading-spinner, .live-badge, .hero-bg, .hero-overlay, .cta-card, .cta-overlay, .wattermark-img, .logo2-img');
+        animatedElements.forEach(el => animObserver.observe(el));
+    }
 });
+

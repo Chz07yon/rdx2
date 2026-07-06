@@ -22,19 +22,24 @@ Replace all [BLANK - ...] placeholders with real images
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo-box">
-                <img src="assets/ACT.png" alt="RED Studio Logo">
+                <span class="logo-full">RDX RED</span>
+                <span class="logo-short">R</span>
             </a>
             <button class="hamburger" aria-label="Menu">&#9776;</button>
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="team.html">Our Team</a></li>
-                    <li><a href="services.html">Services</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="studio.html">Studio</a></li>
-                    <li><a href="code-red.html">Code RED</a></li>
-                    <li><a href="shape-red.html">Shape RED</a></li>
+                    <li class="nav-dropdown">
+                        <a href="services.html">Services <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="code-red.html">Code RED</a></li>
+                            <li><a href="shape-red.html">Shape RED</a></li>
+                            <li><a href="studio.html">Studio</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="team.html">Team</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -46,20 +51,41 @@ Replace all [BLANK - ...] placeholders with real images
 
     <!-- Hero Section -->
     <section class="hero hero-full">
-        <div class="hero-bg" style="background-image: url('[BLANK - Hero Background]');">
+        <div class="hero-bg" style="background-image: url('assets/Extended Background.png');" aria-hidden="true">
         </div>
-        <canvas id="hero-particles"
+        <canvas id="hero-particles" aria-hidden="true"
             style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:2; pointer-events:none;"></canvas>
-        <div class="hero-overlay"></div>
-        <div class="red-flare"></div>
-        <div class="container text-center fade-in">
-            <img src="assets/Wattermark.png" alt="RED Primary Logo" class="hero-logo-large">
+        <div class="hero-overlay" aria-hidden="true"></div>
+        <div class="red-flare" aria-hidden="true"></div>
+        <div class="container text-center fade-up-heavy">
+            <div class="hero-logo-fader">
+                <img src="assets/Wattermark.png" alt="RED Studio Logo" class="hero-logo-large wattermark-img">
+                <img src="assets/LOGO2.png" alt="" aria-hidden="true" class="hero-logo-large logo2-img">
+            </div>
             <h1 class="hero-title">We Paint <span class="text-accent">with Light</span></h1>
             <p class="subtitle mt-4">Elevating visual storytelling through cinematic lens and premium studio spaces.</p>
             <div class="mt-4">
-                <a href="portfolio.html" class="btn btn-outline" style="margin-right: 15px;">View Work</a>
-                <a href="contact.html" class="btn btn-primary">Get In Touch</a>
+                <a href="portfolio.html" class="btn btn-secondary" style="margin-right: 15px; border-color: transparent; opacity: 0.7;">View Work</a>
+                <a href="contact.html" class="btn btn-primary">Book a Shoot</a>
             </div>
+        </div>
+    </section>
+
+    <!-- Featured Work Strip -->
+    <section class="container fade-up-heavy">
+        <div class="featured-work-grid">
+            <a href="portfolio.html" class="featured-item">
+                <img src="assets/DSLR shot.png" alt="Featured Work 1" loading="lazy">
+                <div class="featured-overlay">View Project</div>
+            </a>
+            <a href="portfolio.html" class="featured-item">
+                <img src="assets/Tulasi.jpg" alt="Featured Work 2" loading="lazy">
+                <div class="featured-overlay">View Project</div>
+            </a>
+            <a href="portfolio.html" class="featured-item">
+                <img src="assets/Midnight.jpg" alt="Featured Work 3" loading="lazy">
+                <div class="featured-overlay">View Project</div>
+            </a>
         </div>
     </section>
 
@@ -69,38 +95,92 @@ Replace all [BLANK - ...] placeholders with real images
             <h2 class="section-title">Signature <span class="text-accent">Services</span></h2>
         </div>
         <div class="card-grid">
-            <div class="card">
+            <div class="card service-card code-red-card">
+                <i class="fas fa-laptop-code service-icon"></i>
                 <h3>Code RED</h3>
-                <p>A High end web developement area focued on specialiesd as per requests from the clients</p>
+                <p>A high-end web development wing focused on specialized solutions tailored to client needs.</p>
                 <a href="services.html" class="btn btn-outline" style="margin-top: 1.5rem;">Explore</a>
             </div>
-            <div class="card">
+            <div class="card service-card shape-red-card">
+                <i class="fas fa-cube service-icon"></i>
                 <h3>Shape RED</h3>
-                <p>The creative digital wing forging impactful digital media including posters, title cards, and logos
-                </p>
+                <p>The creative digital wing forging impactful digital media including posters, title cards, and logos</p>
                 <a href="shape-red.html" class="btn btn-outline" style="margin-top: 1.5rem;">Explore</a>
             </div>
-            <div class="card">
+            <div class="card service-card rdx-red-card">
+                <i class="fas fa-camera service-icon"></i>
                 <h3>RDX RED</h3>
-                <p>RDX Red is the premium photogrphy and videography wing of the RED Studio</p>
+                <p>RDX Red is the premium photography and videography wing of the RED Studio</p>
                 <a href="services.html" class="btn btn-outline" style="margin-top: 1.5rem;">Explore</a>
             </div>
         </div>
     </section>
 
     <!-- Why RED Stats -->
-    <section class="container fade-in" style="margin-top: 2rem;">
+    <section class="container" data-reveal="scale" style="margin-top: 2rem;">
         <div
             style="background: var(--bg-secondary); padding: 4rem; border-radius: 12px; border: 1px solid rgba(227,6,19,0.2); box-shadow: 0 0 40px rgba(0,0,0,0.5);">
-            <div class="card-grid" style="text-align: center;">
+            <div class="card-grid stats-grid" style="text-align: center;">
                 <div>
                     <h2 class="text-accent" style="font-size: 4rem; margin-bottom: 0.5rem;">2</h2>
                     <p class="subtitle" style="margin:0;">Premium Studios</p>
                 </div>
                 <div>
-                    <h2 class="text-accent" style="font-size: 4rem; margin-bottom: 0.5rem;">∞</h2>
+                    <h2 class="text-accent" style="font-size: 4rem; margin-bottom: 0.5rem;">10+</h2>
+                    <p class="subtitle" style="margin:0;">Years Active</p>
+                </div>
+                <div>
+                    <h2 class="text-accent" style="font-size: 4rem; margin-bottom: 0.5rem;">500+</h2>
+                    <p class="subtitle" style="margin:0;">Projects Delivered</p>
+                </div>
+                <div>
+                    <h2 class="text-accent" style="font-size: 4rem; margin-bottom: 0.5rem;">8</h2>
                     <p class="subtitle" style="margin:0;">Creative Potential</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Social Proof Section -->
+    <section class="container fade-simple" style="margin-top: 4rem;">
+        <div class="text-center">
+            <p class="subtitle text-muted" style="margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem;">Trusted By Industry Leaders</p>
+        </div>
+        <div class="trust-marquee">
+            <div class="marquee-track">
+                <span class="trust-logo">VOGUE</span>
+                <span class="trust-logo">NIKE</span>
+                <span class="trust-logo">SONY</span>
+                <span class="trust-logo">RED BULL</span>
+                <span class="trust-logo">HBO</span>
+                <!-- Duplicate for seamless scroll -->
+                <span class="trust-logo" aria-hidden="true">VOGUE</span>
+                <span class="trust-logo" aria-hidden="true">NIKE</span>
+                <span class="trust-logo" aria-hidden="true">SONY</span>
+                <span class="trust-logo" aria-hidden="true">RED BULL</span>
+                <span class="trust-logo" aria-hidden="true">HBO</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust / Social Proof Section -->
+    <section class="container fade-simple" style="margin-top: 4rem;">
+        <div class="text-center">
+            <p class="subtitle text-muted" style="margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.8rem;">Trusted By Industry Leaders</p>
+        </div>
+        <div class="trust-marquee">
+            <div class="marquee-track">
+                <span class="trust-logo">VOGUE</span>
+                <span class="trust-logo">NIKE</span>
+                <span class="trust-logo">SONY</span>
+                <span class="trust-logo">RED BULL</span>
+                <span class="trust-logo">HBO</span>
+                <!-- Duplicate for seamless scroll -->
+                <span class="trust-logo" aria-hidden="true">VOGUE</span>
+                <span class="trust-logo" aria-hidden="true">NIKE</span>
+                <span class="trust-logo" aria-hidden="true">SONY</span>
+                <span class="trust-logo" aria-hidden="true">RED BULL</span>
+                <span class="trust-logo" aria-hidden="true">HBO</span>
             </div>
         </div>
     </section>
@@ -120,7 +200,7 @@ Replace all [BLANK - ...] placeholders with real images
     <footer>
         <div class="container footer-grid fade-in">
             <div class="footer-logo">
-                <img src="assets/ACT.png" alt="RED Logo">
+                <img src="assets/ACT.png" alt="RED Logo" loading="lazy">
                 <p class="text-muted" style="margin-top: 1rem;">Capturing Moments in Red</p>
             </div>
             <div class="footer-links-grid">
@@ -169,3 +249,6 @@ Replace all [BLANK - ...] placeholders with real images
 </body>
 
 </html>
+
+
+

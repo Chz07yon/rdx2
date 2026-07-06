@@ -159,9 +159,10 @@ Editorial Full-Page Redesign — No Modals
 
         /* Sticky Section Label */
         .panel-sticky-label {
-            position: absolute;
+            position: sticky;
             left: -2rem;
             top: 120px;
+            z-index: 5;
             writing-mode: vertical-rl;
             transform: rotate(180deg);
             font-family: 'Inter', sans-serif;
@@ -172,13 +173,83 @@ Editorial Full-Page Redesign — No Modals
             letter-spacing: 3px;
             opacity: 0;
             transition: opacity 0.6s ease;
-            position: sticky;
-            top: 120px;
-            z-index: 5;
         }
 
         .editorial-panel.in-view .panel-sticky-label {
             opacity: 1;
+        }
+
+        /* ─── DOT NAVIGATION RAIL ─── */
+        .dot-rail {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 50;
+        }
+
+        .dot-item {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .dot-item::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .dot-item:last-child::after {
+            display: none;
+        }
+
+        .dot-item.active {
+            color: var(--accent-red);
+            transform: scale(1.3);
+        }
+
+        @media (max-width: 900px) {
+            .dot-rail {
+                display: none;
+            }
+        }
+
+        /* ─── SCROLL FOR NEXT INDICATOR ─── */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 1;
+            transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
         }
 
         /* ─── LEFT COLUMN — Portrait ─── */
@@ -209,6 +280,22 @@ Editorial Full-Page Redesign — No Modals
             object-position: center 20%;
             display: block;
             will-change: transform;
+        }
+
+        @media (hover: hover) {
+            .editorial-panel.in-view .portrait-wrapper {
+                transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            }
+            .editorial-panel.in-view .portrait-wrapper:hover {
+                transform: scale(1.03);
+            }
+            .editorial-panel.in-view .portrait-wrapper img {
+                filter: grayscale(20%);
+                transition: filter 0.4s ease;
+            }
+            .editorial-panel.in-view .portrait-wrapper:hover img {
+                filter: grayscale(0%);
+            }
         }
 
         .portrait-wrapper::after {
@@ -286,8 +373,14 @@ Editorial Full-Page Redesign — No Modals
             transition: opacity 1s ease;
         }
 
+        @keyframes ghost-drift {
+            0% { transform: translate(calc(-50% - 20px), -50%); }
+            100% { transform: translate(calc(-50% + 20px), -50%); }
+        }
+
         .editorial-panel.in-view .ghost-name {
             opacity: 1;
+            animation: ghost-drift 12s ease-in-out infinite alternate;
         }
 
         /* Name */
@@ -324,6 +417,24 @@ Editorial Full-Page Redesign — No Modals
         .editorial-panel.in-view .member-role {
             opacity: 1;
             transform: translateX(0);
+        }
+
+        /* Tagline */
+        .member-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: #d4d0cb;
+            font-style: italic;
+            margin-top: -0.5rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+        }
+
+        .editorial-panel.in-view .member-tagline {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Red Divider */
@@ -580,11 +691,23 @@ Editorial Full-Page Redesign — No Modals
             }
 
             .stats-row {
-                gap: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .stat-block {
+                display: flex;
+                align-items: baseline;
+                gap: 0.5rem;
+            }
+            
+            .stat-block .section-label {
+                margin-bottom: 0;
             }
 
             .stat-value {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             .separator-watermark {
@@ -621,14 +744,23 @@ Editorial Full-Page Redesign — No Modals
             .portrait-quote,
             .member-name,
             .member-role,
+            .member-tagline,
             .stat-value,
             .specialty-tag,
+            .panel-separator,
+            .editorial-panel-inner *,
             .bio-text .bio-line {
                 opacity: 1 !important;
                 transform: none !important;
                 clip-path: none !important;
                 animation: none !important;
                 transition: none !important;
+            }
+
+            .ghost-name {
+                transform: translate(-50%, -50%) !important;
+                animation: none !important;
+                opacity: 1 !important;
             }
 
             .hero-rule {
@@ -650,25 +782,112 @@ Editorial Full-Page Redesign — No Modals
                 animation: none !important;
             }
         }
+
+        /* ─── SKELETON LOADER ─── */
+        .skeleton-panel {
+            position: relative;
+            width: 100%;
+            padding: 8rem 0;
+            overflow: hidden;
+        }
+
+        .skeleton-inner {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+        }
+
+        .skeleton-portrait {
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
+            background-size: 200% 100%;
+            border-radius: 8px;
+            animation: skeleton-shimmer 1.5s linear infinite;
+        }
+
+        .skeleton-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-top: 2rem;
+        }
+
+        .skeleton-line {
+            background: linear-gradient(90deg, rgba(255,255,255,0.02) 25%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.02) 75%);
+            background-size: 200% 100%;
+            border-radius: 4px;
+            animation: skeleton-shimmer 1.5s linear infinite;
+        }
+
+        .skeleton-line.title {
+            height: 5rem;
+            width: 70%;
+            margin-bottom: 2rem;
+        }
+
+        .skeleton-line.text {
+            height: 1.2rem;
+            width: 100%;
+        }
+
+        .skeleton-line.text.short {
+            width: 60%;
+        }
+
+        @keyframes skeleton-shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        @media (max-width: 768px) {
+            .skeleton-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 0 1.5rem;
+            }
+            .skeleton-panel {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .skeleton-portrait,
+            .skeleton-line {
+                animation: none !important;
+                background: rgba(255, 255, 255, 0.04) !important;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div style="overflow-x: hidden; width: 100%; position: relative;">
     <!-- Header Navigation -->
     <header>
         <div class="nav-container">
-            <a href="index.html" class="logo-box"><img src="assets/ACT.png" alt="RED Studio"></a>
+            <a href="index.html" class="logo-box">
+                <span class="logo-full">RDX RED</span>
+                <span class="logo-short">R</span>
+            </a>
             <button class="hamburger" aria-label="Menu">&#9776;</button>
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="team.html" class="active">Our Team</a></li>
-                    <li><a href="services.html">Services</a></li>
                     <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="studio.html">Studio</a></li>
-                    <li><a href="code-red.html">Code RED</a></li>
-                    <li><a href="shape-red.html">Shape RED</a></li>
+                    <li class="nav-dropdown">
+                        <a href="services.html">Services <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="code-red.html">Code RED</a></li>
+                            <li><a href="shape-red.html">Shape RED</a></li>
+                            <li><a href="studio.html">Studio</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="team.html" class="active">Team</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
@@ -697,7 +916,7 @@ Editorial Full-Page Redesign — No Modals
     <section class="container" style="position: relative; padding-top: 2rem;">
         <div class="team-grid">
             <div class="profile-card team-member-card" data-name="Chris Zeyon Pinto"
-                data-role="Creative Director & Founder" data-img="assets/Chris.png"
+                data-role="Creative Director & Founder" data-tagline="Cinematic Direction. Brand Storytelling." data-img="assets/Chris.png"
                 data-bio="The visionary force behind RED Studio. With a passion for dramatic lighting and emotional storytelling, Chris leads the creative direction and ensures every frame tells a powerful story. He has directed prominent campaigns and his hallmark is an unmistakable cinematic contrast. He handles RDX RED and SHAPE RED."
                 data-experience="2+ Years" data-specialties="Cinematic Direction, Visual Storytelling, Brand Campaigns"
                 data-equipment="Unclassified"
@@ -705,19 +924,64 @@ Editorial Full-Page Redesign — No Modals
                 data-instagram="@z_____ch7" data-instagram-url="https://instagram.com/z_____ch7">
             </div>
 
-            <div class="profile-card team-member-card" data-name="Ciyana Lora Pinto" data-role="Technical Director"
+            <div class="profile-card team-member-card" data-name="Ciyana Lora Pinto" data-role="Technical Director" data-tagline="Creative Visionary. Digital Architect."
                 data-img="assets/Ciyana.png"
-                data-bio="She leads RED Studio’s digital arm, transforming bold creative visions into high-performance, cinematic websites. With a sharp eye for UI/UX and a passion for clean code, she ensures every RED website feels as premium and immersive as our photography and videography work. She maintains complete creative control and secrecy over client projects. She handles CODE RED."
+                data-bio="She leads RED Studio�s digital arm, transforming bold creative visions into high-performance, cinematic websites. With a sharp eye for UI/UX and a passion for clean code, she ensures every RED website feels as premium and immersive as our photography and videography work. She maintains complete creative control and secrecy over client projects. She handles CODE RED."
                 data-experience="Unclassified" data-specialties="Fashion & Editorial, Coding, Natural Light Portraits"
                 data-equipment="Unclassified" data-quote="Every frame is a painting waiting to be revealed."
-                data-instagram="@Unclassified" data-instagram-url="https://instagram.com/rdx._.red"></div>
-        </div>
-        </div>
+                data-instagram="@Unclassified" data-instagram-url="https://instagram.com/rdx._.red">
+            </div>
+
+            <div class="profile-card team-member-card" data-name="[ CLASSIFIED ]" data-role="Incoming Visionary" data-tagline="Awaiting Declassification. Next-Gen Talent."
+                data-img="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1' fill='black'/%3E%3C/svg%3E"
+                data-bio="The RED Studio roster is actively expanding. A new creative force is currently being integrated into our ranks. Full identity, specialty, and portfolio access are restricted until official declassification."
+                data-experience="[ RESTRICTED ]" data-specialties="[ RESTRICTED ]"
+                data-equipment="[ RESTRICTED ]" data-quote="Patience. The best is yet to come."
+                data-instagram="@red.studio" data-instagram-url="https://instagram.com/rdx._.red">
+            </div>
         </div>
 
         <!-- Editorial Panels Container (JS-populated) -->
-        <div id="team-editorial-panels"></div>
+        <div id="team-editorial-panels">
+            <!-- Loading Skeleton (removed by JS) -->
+            <div class="skeleton-panel">
+                <div class="skeleton-inner">
+                    <div class="skeleton-portrait"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-line title"></div>
+                        <div class="skeleton-line text"></div>
+                        <div class="skeleton-line text"></div>
+                        <div class="skeleton-line text short"></div>
+                        <div class="skeleton-line text" style="margin-top: 2rem; height: 3rem; width: 40%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skeleton-panel">
+                <div class="skeleton-inner">
+                    <div class="skeleton-portrait"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-line title"></div>
+                        <div class="skeleton-line text"></div>
+                        <div class="skeleton-line text"></div>
+                        <div class="skeleton-line text short"></div>
+                        <div class="skeleton-line text" style="margin-top: 2rem; height: 3rem; width: 40%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- Roster End Separator -->
+        <div class="roster-end-separator" style="margin: 4rem auto 2rem auto; text-align: center; position: relative; max-width: 800px; padding: 0 2rem;">
+            <hr style="border: none; border-top: 1px dashed rgba(227, 6, 19, 0.2); margin: 0;">
+            <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-primary, #0A0A0A); padding: 0 1rem; color: var(--text-muted); font-family: 'Inter', sans-serif; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; white-space: nowrap;">End of Confirmed Roster</span>
+        </div>
+
+        <!-- Upcoming Members Teaser -->
+        <div class="upcoming-teaser text-center fade-in" style="margin: 8rem 0 4rem; padding: 4rem 2rem; border: 1px dashed rgba(227, 6, 19, 0.3); border-radius: 12px; background: rgba(10, 0, 0, 0.5); position: relative; overflow: hidden;">
+            <div class="red-flare" style="width: 300px; height: 300px; opacity: 0.3; top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;"></div>
+            <h2 style="font-family: 'Bebas Neue', sans-serif; font-size: 4rem; letter-spacing: 2px; color: rgba(255, 255, 255, 0.8); position: relative; z-index: 2;">More Visionaries <span class="text-accent">Incoming</span></h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 1rem auto 0; font-family: 'JetBrains Mono', sans-serif; position: relative; z-index: 2;">The RED Studio roster is expanding. Stay tuned as we prepare to unveil the next wave of creative talent joining our ranks.</p>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -744,18 +1008,29 @@ Editorial Full-Page Redesign — No Modals
             const container = document.getElementById('team-editorial-panels');
             if (!container || cards.length === 0) return;
 
+            const escapeHTML = (str) => {
+                return String(str)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+            };
+
             let panelHTML = '';
+            let dotsHTML = '<div class="dot-rail">';
 
             cards.forEach((card, index) => {
-                const name = card.getAttribute('data-name') || '';
-                const role = card.getAttribute('data-role') || '';
+                const name = escapeHTML(card.getAttribute('data-name') || '');
+                const role = escapeHTML(card.getAttribute('data-role') || '');
+                const taglineText = escapeHTML(card.getAttribute('data-tagline') || '');
                 const img = card.getAttribute('data-img') || '';
-                const bio = card.getAttribute('data-bio') || '';
-                const experience = card.getAttribute('data-experience') || '';
-                const specialties = card.getAttribute('data-specialties') || '';
-                const equipment = card.getAttribute('data-equipment') || '';
-                const quote = card.getAttribute('data-quote') || '';
-                const instagram = card.getAttribute('data-instagram') || '';
+                const bio = escapeHTML(card.getAttribute('data-bio') || '');
+                const experience = escapeHTML(card.getAttribute('data-experience') || '');
+                const specialties = escapeHTML(card.getAttribute('data-specialties') || '');
+                const equipment = escapeHTML(card.getAttribute('data-equipment') || '');
+                const quote = escapeHTML(card.getAttribute('data-quote') || '');
+                const instagram = escapeHTML(card.getAttribute('data-instagram') || '');
                 const instagramUrl = card.getAttribute('data-instagram-url') || '#';
 
                 const num = String(index + 1).padStart(2, '0');
@@ -796,6 +1071,17 @@ Editorial Full-Page Redesign — No Modals
                     `;
                 }
 
+                dotsHTML += `<div class="dot-item" data-target="panel-${num}" id="dot-${num}">${num}</div>`;
+
+                let scrollIndicatorHTML = '';
+                if (index < cards.length - 1) {
+                    scrollIndicatorHTML = `
+                        <div class="scroll-indicator" aria-hidden="true">
+                            SCROLL <i class="fas fa-chevron-down"></i>
+                        </div>
+                    `;
+                }
+
                 panelHTML += `
                     <div class="editorial-panel" data-animate="panel" id="panel-${num}">
                         <div class="ghost-name">${ghostText}</div>
@@ -816,6 +1102,7 @@ Editorial Full-Page Redesign — No Modals
                             <div class="content-col">
                                 <h2 class="member-name">${displayName}</h2>
                                 <p class="member-role">${role}</p>
+                                ${taglineText ? `<div class="member-tagline">${taglineText}</div>` : ''}
                                 <div class="content-divider"></div>
 
                                 <div class="bio-section">
@@ -825,11 +1112,11 @@ Editorial Full-Page Redesign — No Modals
 
                                 <div class="stats-row">
                                     <div class="stat-block">
-                                        <div class="section-label">Experience</div>
+                                        <div class="section-label"><i class="fas fa-clock" style="margin-right: 0.4rem; color: var(--accent-red);"></i>Experience:</div>
                                         <div class="stat-value">${experience}</div>
                                     </div>
                                     <div class="stat-block">
-                                        <div class="section-label">${role.includes('Development') || role.includes('Design') ? 'Primary Tools' : 'Primary Equipment'}</div>
+                                        <div class="section-label"><i class="fas fa-tools" style="margin-right: 0.4rem; color: var(--accent-red);"></i>${role.includes('Development') || role.includes('Design') ? 'Primary Tools:' : 'Primary Equipment:'}</div>
                                         <div class="stat-value">${equipment}</div>
                                     </div>
                                 </div>
@@ -840,28 +1127,78 @@ Editorial Full-Page Redesign — No Modals
                                 </div>
                             </div>
                         </div>
+                        ${scrollIndicatorHTML}
                     </div>
                 `;
             });
 
-            container.innerHTML = panelHTML;
+            dotsHTML += '</div>';
+            container.innerHTML = panelHTML + dotsHTML;
 
             /* ─── SCROLL ANIMATION SYSTEM ─── */
             const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const glitchDecode = (element) => {
+                const originalText = element.getAttribute('data-original-text') || element.textContent;
+                element.setAttribute('data-original-text', originalText);
+                const chars = '!<>-_\\\\/[]{}—=+*^?#_';
+                let iterations = 0;
+                const maxIterations = 15;
+                
+                const interval = setInterval(() => {
+                    element.textContent = originalText.split('').map((char, index) => {
+                        if (index < iterations / 1.5) {
+                            return originalText[index];
+                        }
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    }).join('');
+                    
+                    if (iterations >= maxIterations) {
+                        clearInterval(interval);
+                        element.textContent = originalText;
+                    }
+                    iterations++;
+                }, 30);
+            };
 
             if (!reducedMotion) {
                 // IntersectionObserver for panels
                 const panelObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
+                            const wasInView = entry.target.classList.contains('in-view');
                             entry.target.classList.add('in-view');
-                            panelObserver.unobserve(entry.target);
+                            
+                            if (!wasInView) {
+                                entry.target.querySelectorAll('.stat-value, .specialty-tag, .member-role, .member-name').forEach(el => {
+                                    if (el.textContent.trim() === 'Unclassified') {
+                                        glitchDecode(el);
+                                    }
+                                });
+                            }
+                            
+                            // Dot rail active state
+                            document.querySelectorAll('.dot-item').forEach(dot => dot.classList.remove('active'));
+                            const num = entry.target.id.split('-')[1];
+                            const activeDot = document.getElementById(`dot-${num}`);
+                            if(activeDot) activeDot.classList.add('active');
                         }
                     });
                 }, { threshold: 0.15 });
 
                 document.querySelectorAll('.editorial-panel').forEach(panel => {
                     panelObserver.observe(panel);
+                });
+
+                // Dot click logic
+                document.querySelectorAll('.dot-item').forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        const targetId = e.currentTarget.getAttribute('data-target');
+                        const targetPanel = document.getElementById(targetId);
+                        if(targetPanel) {
+                            targetPanel.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    });
                 });
 
                 // IntersectionObserver for separators
@@ -893,6 +1230,19 @@ Editorial Full-Page Redesign — No Modals
                             img.style.transform = `translateY(${translateY}px)`;
                         }
                     });
+
+                    // Scroll indicator fade
+                    document.querySelectorAll('.editorial-panel').forEach(panel => {
+                        const indicator = panel.querySelector('.scroll-indicator');
+                        if (indicator) {
+                            const rect = panel.getBoundingClientRect();
+                            if (rect.top <= -100) {
+                                indicator.style.opacity = '0';
+                            } else {
+                                indicator.style.opacity = '1';
+                            }
+                        }
+                    });
                 };
 
                 let parallaxTick = false;
@@ -913,6 +1263,8 @@ Editorial Full-Page Redesign — No Modals
             }
         });
     </script>
+    </div>
 </body>
 
 </html>
+
