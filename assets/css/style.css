@@ -1902,6 +1902,27 @@ footer { position: relative; }
     color: var(--text-primary);
 }
 
+.work-marquee-track {
+    animation: scrollMarquee 40s linear infinite;
+}
+
+.work-marquee-img {
+    display: inline-block;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 1rem;
+    vertical-align: middle;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.work-marquee-img:hover {
+    transform: scale(1.02);
+    filter: brightness(1.1);
+    border-color: rgba(227, 6, 19, 0.5);
+}
+
 @keyframes scrollMarquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); } 
